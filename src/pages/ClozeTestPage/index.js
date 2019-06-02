@@ -72,18 +72,19 @@ class ClozeTestPage extends React.Component {
     return (
       <>
         <PageHeader
-          onBack={() => history.back()}
+          onBack={() => history.goBack()}
           title="Natural Language Understanding"
           subTitle="Cloze Test"
           extra={[
-            <Tag>Vietnamese 🇻🇳</Tag>
+            <Tag key='vi'>Vietnamese 🇻🇳</Tag>
           ]}
         >
           {/* <p>
             <span>Supported Languages: </span>
             <img src={vietnamFlag} alt="Vietnam" style={{ marginLeft: 20 }} />
           </p> */}
-          <p>The Cloze Test is the task of filling in the blanks of a sentence to show that the system understands basic grammar, word collocations and contextual meaning of the sentence</p>
+          <p>The Cloze Test is the task of filling in the blanks of a sentence to show that the system understands basic grammar, word collocations and contextual meaning of the sentence.</p>
+          <p>This public model is trained on a dataset consists of Vietnamese Wikipedia and News sites</p>
           <h1>Step 1:</h1>
           <p>Enter text or choose an example:</p>
   
@@ -135,8 +136,8 @@ class ClozeTestPage extends React.Component {
           {clozeResp && <>
             <h1>Result:</h1>
             <p>Click on the predicted words to see top 5 candidates for each word</p>
-            {clozeResp.labels.map((top_labels, idx) => <>
-              {submittedTokenizeResp[idx].isMasked 
+            {clozeResp.labels.map((top_labels, idx) => 
+              submittedTokenizeResp[idx].isMasked 
                 ? <Button 
                   key={idx}
                   type="danger"
@@ -152,9 +153,7 @@ class ClozeTestPage extends React.Component {
                   style={{ marginRight: 10, marginBottom: 10 }}
                 >
                   {submittedTokenizeResp[idx].value}
-                </Button>
-              }
-            </>)}
+                </Button>)}
           </>}
 
           {(selectedToken !== null) 
