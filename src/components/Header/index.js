@@ -4,7 +4,9 @@ import { Layout } from 'antd';
 function Header() {
   return (
     <Layout.Header>
-      Botbot Demo
+      <span style={{ color: 'white', fontWeight: '600' }}>
+        BotBot.AI Lab
+      </span>
     </Layout.Header>
   );
 }

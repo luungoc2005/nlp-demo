@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import { addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import vi from 'react-intl/locale-data/vi';
+
+import axios from 'axios';
+
+addLocaleData([...en, ...vi]);
+
+axios.defaults.baseURL = 'http://localhost:5000';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
