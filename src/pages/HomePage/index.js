@@ -1,9 +1,9 @@
 import React from 'react';
-import { PageHeader, AutoComplete, Input, Button, Table } from 'antd';
+import { PageHeader, AutoComplete, Input, Button, Table, Tag } from 'antd';
 import axios from 'axios';
 
 // https://www.iconfinder.com/iconsets/142-mini-country-flags-16x16px 
-import vietnamFlag from '../../assets/flags/vietnam.png'
+// import vietnamFlag from '../../assets/flags/vietnam.png'
 
 const examples = [
   'Thay mới nhịp giữa cầu bị sập ở Đồng Tháp trong bảy ngày',
@@ -66,11 +66,14 @@ class HomePage extends React.Component {
           onBack={() => window.history.back()}
           title="Natural Language Understanding"
           subTitle="Cloze Test"
+          extra={[
+            <Tag>Vietnamese 🇻🇳</Tag>
+          ]}
         >
-          <p>
+          {/* <p>
             <span>Supported Languages: </span>
             <img src={vietnamFlag} alt="Vietnam" style={{ marginLeft: 20 }} />
-          </p>
+          </p> */}
           <p>The Cloze Test is the task of filling in the blanks of a sentence to show that the system understands basic grammar, word collocations and contextual meaning of the sentence</p>
           <h1>Step 1:</h1>
           <p>Enter text or choose an example:</p>
@@ -93,7 +96,7 @@ class HomePage extends React.Component {
   
           {(tokenizeResp && <>
             <h1>Step 2:</h1>
-            <p>Choose words to mask out</p>
+            <p>Choose words to omit and have the model predict</p>
             <p>{tokenizeResp.map((tokenObject, idx) => 
             <Button 
               key={idx}
@@ -122,9 +125,11 @@ class HomePage extends React.Component {
 
           {clozeResp && <>
             <h1>Result:</h1>
+            <p>Click on the predicted words to see top 5 candidates for each word</p>
             {clozeResp.labels.map((top_labels, idx) => <>
               {submittedTokenizeResp[idx].isMasked 
                 ? <Button 
+                  key={idx}
                   type="danger"
                   style={{ marginRight: 10, marginBottom: 10 }}
                   onClick={() => this.setState({ selectedToken: idx })}
@@ -132,6 +137,7 @@ class HomePage extends React.Component {
                   {top_labels[0]}
                 </Button>
                 : <Button
+                  key={idx}
                   disabled
                   type="dashed"
                   style={{ marginRight: 10, marginBottom: 10 }}
@@ -142,7 +148,7 @@ class HomePage extends React.Component {
             </>)}
           </>}
 
-          {(selectedToken && selectedToken > 0) 
+          {(selectedToken !== null) 
           ? <>
             <p>Word Probabilities</p>
             <Table 
