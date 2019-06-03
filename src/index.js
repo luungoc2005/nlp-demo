@@ -11,7 +11,7 @@ import axios from 'axios';
 
 addLocaleData([...en, ...vi]);
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://botbot-nlp-demo.herokuapp.com/';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
