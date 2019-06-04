@@ -10,6 +10,8 @@ import {
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
+import { getFlagEmoji } from '../../utils';
+
 // https://www.iconfinder.com/iconsets/142-mini-country-flags-16x16px 
 // import vietnamFlag from '../../assets/flags/vietnam.png'
 
@@ -76,7 +78,7 @@ class ClozeTestPage extends React.Component {
           title="Natural Language Understanding"
           subTitle="Cloze Test"
           extra={[
-            <Tag key='vi'>Vietnamese <span role="img" aria-label="flag">🇻🇳</span></Tag>
+            <Tag key='vi'>Vietnamese <span role="img" aria-label="flag">{getFlagEmoji('VN')}</span></Tag>
           ]}
         >
           {/* <p>
