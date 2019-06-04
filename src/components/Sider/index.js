@@ -13,6 +13,7 @@ const Sider = ({ history, location }) => {
       >
         <Menu.Item key="/" onClick={() => history.push('/')}>Home</Menu.Item>
         <Menu.Item key="/cloze" onClick={() => history.push('/cloze')}>Cloze Test</Menu.Item>
+        <Menu.Item key="/language_identification" onClick={() => history.push('/language_identification')}>Language Identification</Menu.Item>
         {/* <Menu.Item key="/entity_recognition" onClick={() => history.push('/entity_recognition')}>Entity Recognition</Menu.Item> */}
       </Menu>
     </Layout.Sider>

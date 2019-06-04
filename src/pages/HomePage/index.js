@@ -12,6 +12,7 @@ const HomePage = ({ history }) => {
       >
         <p>This site houses various experiments in Natural Language Understanding (NLU).</p>
         <p>This includes validation for models that contain transferable knowledge for other downstream NLU tasks.</p>
+        <p>The models presented on this site are more optimized for performance rather than accuracy.</p>
         <p>Please use the left sidebar and have fun experimenting.</p>
 
         <h1>Disclaimer</h1>

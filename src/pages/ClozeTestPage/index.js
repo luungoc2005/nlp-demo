@@ -76,7 +76,7 @@ class ClozeTestPage extends React.Component {
           title="Natural Language Understanding"
           subTitle="Cloze Test"
           extra={[
-            <Tag key='vi'>Vietnamese 🇻🇳</Tag>
+            <Tag key='vi'>Vietnamese <span role="img" aria-label="flag">🇻🇳</span></Tag>
           ]}
         >
           {/* <p>

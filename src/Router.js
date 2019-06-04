@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 
 import HomePage from './pages/HomePage';
 import ClozeTestPage from './pages/ClozeTestPage';
+import LanguageIdentificationPage from './pages/LanguageIdentificationPage';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -29,6 +30,7 @@ function AppRouter() {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/cloze' component={ClozeTestPage} />
+              <Route exact path='/language_identification' component={LanguageIdentificationPage} />
             </Switch>
 
             <Footer />

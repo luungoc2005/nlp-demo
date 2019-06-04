@@ -12,7 +12,7 @@ import axios from 'axios';
 addLocaleData([...en, ...vi]);
 
 // axios.defaults.baseURL = 'https://botbot-nlp-demo.herokuapp.com/';
-axios.defaults.baseURL = 'http://34.87.7.180/'
+axios.defaults.baseURL = 'http://34.87.19.113/'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
