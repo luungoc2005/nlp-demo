@@ -59,7 +59,7 @@ class ClozeTestPage extends React.Component {
             <Tag key='lang'>176 languages</Tag>
           ]}
         >
-          <p>Identifying the language used for any given sentence - This model supports 176 languages and trained on Wikipedia data</p>
+          <p>Identifying the language used for any given sentence - This model supports 176 languages and was trained on Wikipedia data</p>
 
           <div style={{ marginTop: 20, marginBottom: 20 }}>
             <AutoComplete 
