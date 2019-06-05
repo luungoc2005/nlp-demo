@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from 'history';
 
 import HomePage from './pages/HomePage';
 import ClozeTestPage from './pages/ClozeTestPage';
 import LanguageIdentificationPage from './pages/LanguageIdentificationPage';
+import EntityRecognitionPage from './pages/EntityRecognitionPage';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -31,6 +32,7 @@ function AppRouter() {
               <Route exact path='/' component={HomePage} />
               <Route exact path='/cloze' component={ClozeTestPage} />
               <Route exact path='/language_identification' component={LanguageIdentificationPage} />
+              <Route exact path='/entity_recognition' component={EntityRecognitionPage} />
             </Switch>
 
             <Footer />

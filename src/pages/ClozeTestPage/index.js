@@ -5,7 +5,8 @@ import {
   Input, 
   Button, 
   Table, 
-  Tag 
+  Tag,
+  Divider,
 } from 'antd';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
@@ -75,10 +76,15 @@ class ClozeTestPage extends React.Component {
       <>
         <PageHeader
           onBack={() => history.goBack()}
-          title="Natural Language Understanding"
+          title="Language Modeling"
           subTitle="Cloze Test"
           extra={[
-            <Tag key='vi'>Vietnamese <span role="img" aria-label="flag">{getFlagEmoji('VN')}</span></Tag>
+            <Tag.CheckableTag checked key='vi'>
+              Vietnamese
+              <span role="img" aria-label="flag" style={{ marginLeft: 5 }}>
+                {getFlagEmoji('VN')}
+              </span>
+            </Tag.CheckableTag>
           ]}
         >
           {/* <p>
@@ -87,6 +93,8 @@ class ClozeTestPage extends React.Component {
           </p> */}
           <p>The Cloze Test is the task of filling in the blanks of a sentence to show that the system understands basic grammar, word collocations and contextual meaning of the sentence.</p>
           <p>This public model is trained on a dataset consists of Vietnamese Wikipedia and News sites</p>
+          
+          <Divider />
           <h1>Step 1:</h1>
           <p>Enter text or choose an example:</p>
   
@@ -107,6 +115,9 @@ class ClozeTestPage extends React.Component {
           </div>
   
           {(tokenizeResp && <>
+
+            <Divider />
+
             <h1>Step 2:</h1>
             <p>Choose words to omit and have the model predict</p>
             <p>{tokenizeResp.map((tokenObject, idx) => 
@@ -136,6 +147,8 @@ class ClozeTestPage extends React.Component {
           </>)}
 
           {clozeResp && <>
+            <Divider />
+
             <h1>Result:</h1>
             <p>Click on the predicted words to see top 5 candidates for each word</p>
             {clozeResp.labels.map((top_labels, idx) => 

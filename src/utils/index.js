@@ -27,6 +27,7 @@ export const getFlagEmoji = (country) => {
     return `${symbols[country[0].charCodeAt() - 97]}${symbols[country[1].charCodeAt() - 97]}`
   }
   else {
-    return `Invalid country code`
+    console.log(country)
+    return ''
   }
 }

@@ -5,6 +5,7 @@ import {
   Input, 
   Button,
   Tag,
+  Divider,
 } from 'antd';
 import { getProbabilityTagColor, getFlagEmoji, getCountryFromLanguage } from '../../utils';
 import languages from '../../utils/languages';
@@ -20,6 +21,8 @@ const examples = [
   'The quick brown fox jumps over the lazy dog',
   '"Stehler" ist in diesem Sinne ein mögliches Wort im Deutschen , das aber durch das bekannte Wort "Dieb" verhindert wird',
   'Est-ce que vous avez visité Paris?',
+  '시간 있을 때 뭐 하세요 ?',
+  '你去忙你的吧',
 ]
 
 class ClozeTestPage extends React.Component {
@@ -61,6 +64,9 @@ class ClozeTestPage extends React.Component {
         >
           <p>Identifying the language used for any given sentence - This model supports 176 languages and was trained on Wikipedia data</p>
 
+          <Divider />
+
+          <p>Enter text or choose an example:</p>
           <div style={{ marginTop: 20, marginBottom: 20 }}>
             <AutoComplete 
               dataSource={examples}
@@ -79,24 +85,31 @@ class ClozeTestPage extends React.Component {
 
           {LIUResp && LIUResp.length
           ? <div style={{ marginTop: 20, marginBottom: 20 }}>
-            <strong>Detected Language: </strong>
-            <span>{languages[LIUResp[0].language]} </span>
-            <Tag color={getProbabilityTagColor(Math.round(LIUResp[0].probability))}>
-              {Math.min(Math.round(LIUResp[0].probability * 10000) / 100, 100)}%
-            </Tag>
-            <div style={{ 
-              marginTop: 20, 
-              marginBottom: 20,
-              wordWrap: 'break-word'
-            }}>
-              {getCountryFromLanguage(LIUResp[0].language)
-                .map(region => 
-                  <span key={region} role="img" aria-label="flag" style={{ marginRight: 10 }}>
-                    {getFlagEmoji(region)}
-                  </span>
-              )}
+              <strong>Detected Language:</strong>
+              <span style={{ marginLeft: 20 }}>{languages[LIUResp[0].language]}</span>
+              <Tag style={{ marginLeft: 20 }} color={getProbabilityTagColor(Math.round(LIUResp[0].probability))}>
+                {Math.min(Math.round(LIUResp[0].probability * 10000) / 100, 100)}%
+              </Tag>
+              <div style={{ 
+                marginTop: 20, 
+                marginBottom: 20,
+                wordWrap: 'break-word'
+              }}>
+                {getCountryFromLanguage(LIUResp[0].language)
+                  .map(region => {
+                    const emoji = getFlagEmoji(region)
+                    if (emoji) {
+                      return <span key={region} role="img" aria-label="flag" style={{ marginRight: 10 }}>
+                        {emoji}
+                      </span>
+                    }
+                    else {
+                      return null;
+                    }
+                  })
+                  .filter(item => item)}
+              </div>
             </div>
-          </div>
           : <div />}
         </PageHeader>
       </>
