@@ -13,7 +13,6 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 import { getFlagEmoji } from '../../utils';
-import { fromEventPattern } from 'rxjs';
 
 // https://www.iconfinder.com/iconsets/142-mini-country-flags-16x16px 
 // import vietnamFlag from '../../assets/flags/vietnam.png'
