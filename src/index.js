@@ -13,7 +13,7 @@ addLocaleData([...en, ...vi]);
 
 // axios.defaults.baseURL = 'https://botbot-nlp-demo.herokuapp.com/';
 // axios.defaults.baseURL = 'http://34.87.19.113/' // gcloud single instance
-axios.defaults.baseURL = 'http://104.155.217.82/' // gcloud kube cluster
+axios.defaults.baseURL = 'http://35.194.209.225/' // gcloud kube cluster
 // axios.defaults.baseURL = 'http://localhost:5000/'
 
 ReactDOM.render(<App />, document.getElementById('root'));
