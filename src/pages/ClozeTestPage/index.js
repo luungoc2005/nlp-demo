@@ -30,12 +30,15 @@ class ClozeTestPage extends React.Component {
     submittedTokenizeResp: null,
     clozeResp: null,
     selectedToken: null,
+    language: 'vi',
   }
 
   getTokenizeResult = async (items) => {
+    const { language } = this.state;
     try {
       const resp = await axios.post('/demo/tokenize', {
-        items
+        items,
+        language,
       })
       // console.log(resp)
       if (resp.data && resp.data.length) {
@@ -53,9 +56,14 @@ class ClozeTestPage extends React.Component {
   };
 
   getClozeTestResult = async () => {
+    const { tokenizeResp, language } = this.state;
     try {
-      const { tokenizeResp } = this.state;
-      const resp = await axios.post('/demo/cloze_predict', tokenizeResp)
+      const resp = await axios.post('/demo/cloze_predict', 
+        {
+          tokens: tokenizeResp,
+          language,
+        }
+      )
 
       this.setState({ 
         clozeResp: resp.data,
@@ -68,6 +76,10 @@ class ClozeTestPage extends React.Component {
     }
   };
 
+  setLanguage(language) {
+    this.setState({ language })
+  }
+
   render() {
     const { history } = this.props;
     const { input, tokenizeResp, submittedTokenizeResp, clozeResp, selectedToken } = this.state;
@@ -79,7 +91,21 @@ class ClozeTestPage extends React.Component {
           title="Language Modeling"
           subTitle="Cloze Test"
           extra={[
-            <Tag.CheckableTag checked key='vi'>
+            <Tag.CheckableTag 
+              checked={this.state.language === 'en'}
+              onChange={() => this.setLanguage('en')}
+              key='en'
+            >
+              English
+              <span role="img" aria-label="flag" style={{ marginLeft: 5 }}>
+                {getFlagEmoji('GB')}
+              </span>
+            </Tag.CheckableTag>,
+            <Tag.CheckableTag
+              checked={this.state.language === 'vi'}
+              onChange={() => this.setLanguage('vi')}
+              key='vi'
+            >
               Vietnamese
               <span role="img" aria-label="flag" style={{ marginLeft: 5 }}>
                 {getFlagEmoji('VN')}

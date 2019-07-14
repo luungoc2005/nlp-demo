@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 
 import HomePage from './pages/HomePage';
 import ClozeTestPage from './pages/ClozeTestPage';
+import SentimentPage from './pages/SentimentPage';
 import LanguageIdentificationPage from './pages/LanguageIdentificationPage';
 import EntityRecognitionPage from './pages/EntityRecognitionPage';
 import PartOfSpeechTaggerPage from './pages/PartOfSpeechTaggerPage';
@@ -33,6 +34,7 @@ function AppRouter() {
               <Route exact path='/' component={HomePage} />
               <Route exact path='/cloze' component={ClozeTestPage} />
               <Route exact path='/language_identification' component={LanguageIdentificationPage} />
+              <Route exact path='/sentiment' component={SentimentPage} />
               <Route exact path='/entity_recognition' component={EntityRecognitionPage} />
               <Route exact path='/pos_tagging' component={PartOfSpeechTaggerPage} />
             </Switch>
