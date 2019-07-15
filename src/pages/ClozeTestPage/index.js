@@ -16,12 +16,20 @@ import { getFlagEmoji } from '../../utils';
 // https://www.iconfinder.com/iconsets/142-mini-country-flags-16x16px 
 // import vietnamFlag from '../../assets/flags/vietnam.png'
 
-const examples = [
-  'Thay mới nhịp giữa cầu bị sập ở Đồng Tháp trong bảy ngày',
-  'Thầy trò Park Hang-seo bước vào tập nhẹ ngay khi đến Buriram để chuẩn bị cho King\'s Cup 2019',
-  'Với lợi thế sản phẩm dịch vụ đa dạng và những dòng sản phẩm đặc thù, ABC Bank sẵn sàng đáp ứng mọi nhu cầu tài chính của Quý Khách hàng.',
-  'Hàng loạt thí sinh và phụ huynh ôm nhau bật khóc nức nở ngoài cổng trường thi vì không làm được bài'
-]
+const examples = {
+  'vi': [
+    'Thay mới nhịp giữa cầu bị sập ở Đồng Tháp trong bảy ngày',
+    'Thầy trò Park Hang-seo bước vào tập nhẹ ngay khi đến Buriram để chuẩn bị cho King\'s Cup 2019',
+    'Với lợi thế sản phẩm dịch vụ đa dạng và những dòng sản phẩm đặc thù, ABC Bank sẵn sàng đáp ứng mọi nhu cầu tài chính của Quý Khách hàng.',
+    'Hàng loạt thí sinh và phụ huynh ôm nhau bật khóc nức nở ngoài cổng trường thi vì không làm được bài'
+  ],
+  'en': [
+    'A video of Phoenix police officers threatening a family over minor shoplifting has turned long-simmering frustrations over police violence into sustained outrage over the past few weeks.',
+    'EU\'s GPS satellites have been down for four days in mysterious outage',
+    'German schools ban Microsoft Office 365 amid privacy concerns',
+    'If you actually watched and remember the early seasons, you\'ll recall that Marshall was making a living through corporate law while dreaming of becoming an environmental lawyer.'
+  ]
+}
 
 class ClozeTestPage extends React.Component {
   state = {
@@ -82,7 +90,7 @@ class ClozeTestPage extends React.Component {
 
   render() {
     const { history } = this.props;
-    const { input, tokenizeResp, submittedTokenizeResp, clozeResp, selectedToken } = this.state;
+    const { language, input, tokenizeResp, submittedTokenizeResp, clozeResp, selectedToken } = this.state;
 
     return (
       <>
@@ -126,7 +134,7 @@ class ClozeTestPage extends React.Component {
   
           <div style={{ marginTop: 20, marginBottom: 20 }}>
             <AutoComplete 
-              dataSource={examples}
+              dataSource={examples[language]}
               onChange={(value) => this.setState({ input: value })}
               style={{ width: '100%' }}
             >
