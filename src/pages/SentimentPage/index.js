@@ -37,10 +37,7 @@ class SentimentPage extends React.Component {
       // console.log(resp)
       if (resp.data && resp.data.length) {
         this.setState({
-          tokenizeResp: resp.data[0].map(token => ({ value: token, isMasked: false })),
-          submittedTokenizeResp: null,
-          clozeResp: null,
-          selectedToken: null,
+          sentimentResp: resp.data
         })
       }
     }
@@ -53,6 +50,9 @@ class SentimentPage extends React.Component {
     const { history } = this.props;
     const { input, sentimentResp } = this.state;
 
+    const sentimentScore = sentimentResp 
+      ? Math.round(sentimentResp.scores[0] * 100) / 100
+      : 0
     return (
       <>
         <PageHeader
@@ -77,7 +77,6 @@ class SentimentPage extends React.Component {
           <p>Given examples are taken from online review sites.</p>
 
           <Divider />
-          <h1>Step 1:</h1>
           <p>Enter text or choose an example:</p>
   
           <div style={{ marginTop: 20, marginBottom: 20 }}>
@@ -96,14 +95,14 @@ class SentimentPage extends React.Component {
             <Button type="primary" onClick={() => this.getSentimentResult([input])}>Submit</Button>
           </div>
 
-          {sentimentResp && sentimentResp.length
+          {sentimentResp
           ? <div style={{ marginTop: 20, marginBottom: 20 }}>
               <strong>Detected sentiment:</strong>
-              <span style={{ marginLeft: 20 }}>{Math.round(sentimentResp[0] * 100) / 100}</span>
-              <Tag style={{ marginLeft: 20 }} color={sentimentResp[0] >= 0 ? 'green' : 'red'}>
-                {sentimentResp[0] > .5 
+              <span style={{ marginLeft: 20 }}>{sentimentScore}</span>
+              <Tag style={{ marginLeft: 20 }} color={sentimentScore >= 0 ? 'green' : 'red'}>
+                {sentimentScore > 0
                   ? 'Positive'
-                  : sentimentResp[0] < .5 
+                  : sentimentScore < 0
                     ? 'Negative' 
                     : 'Neutral'}
               </Tag>

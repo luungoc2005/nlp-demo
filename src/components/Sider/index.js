@@ -20,11 +20,10 @@ const Sider = ({ history, location }) => {
       >
         <Menu.Item key="/" onClick={() => history.push('/')}>Home</Menu.Item>
         <Menu.Item key="/cloze" onClick={() => history.push('/cloze')}>Cloze Test</Menu.Item>
-        {/* <Menu.Item key="/sentiment" onClick={() => history.push('/sentiment')}>Sentiment Analysis</Menu.Item> */}
+        <Menu.Item key="/sentiment" onClick={() => history.push('/sentiment')}>Sentiment Analysis</Menu.Item>
         <Menu.Item key="/language_identification" onClick={() => history.push('/language_identification')}>Language Identification</Menu.Item>
         <Menu.Item key="/entity_recognition" onClick={() => history.push('/entity_recognition')}>Named Entity Recognition</Menu.Item>
         <Menu.Item key="/pos_tagging" onClick={() => history.push('/pos_tagging')}>Part-Of-Speech Tagging</Menu.Item>
-        {/* <Menu.Item key="/entity_recognition" onClick={() => history.push('/entity_recognition')}>Entity Recognition</Menu.Item> */}
       </Menu>
     </Layout.Sider>
   );
