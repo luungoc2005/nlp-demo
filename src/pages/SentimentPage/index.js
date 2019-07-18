@@ -19,7 +19,9 @@ import { getFlagEmoji } from '../../utils';
 const examples = [
   'Nói chung là ngon, với giá 150k full vat và nước thì mình thấy oke. Gà ở đây cực kì ngon, như vị gà Hs của kfc í',
   'Trái cây ở đây nhiều loại, tươi ngon, ngọt vừa phải. Trà sả tắc vừa uống, thơm ngon. Quán sạch sẽ, phục vụ vui vẻ. Giá cả hợp lý. Chuẩn!',
-  'Quán hơi bé, không gian chật. Vị phở mặn đúng vị bắc, thường mình hay ăn lái lăn ngoài ra chưa thử mấy loại kia'
+  'Mới mở ra đã hư dây kéo',
+  'Gương hơi mờ, Shop k rep tn. Thật sự thất vọng',
+  'Hàng ko đúng chất lượng'
 ]
 
 class SentimentPage extends React.Component {
@@ -35,7 +37,7 @@ class SentimentPage extends React.Component {
         language: 'vi',
       })
       // console.log(resp)
-      if (resp.data && resp.data.length) {
+      if (resp.data) {
         this.setState({
           sentimentResp: resp.data
         })
