@@ -65,7 +65,7 @@ class SentimentPage extends React.Component {
 
   render() {
     const { history } = this.props;
-    const { input, sentimentResp } = this.state;
+    const { language, input, sentimentResp } = this.state;
 
     const sentimentScore = sentimentResp 
       ? Math.round(sentimentResp.scores[0] * 100) / 100
