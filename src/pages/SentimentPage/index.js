@@ -16,25 +16,36 @@ import { getFlagEmoji } from '../../utils';
 // https://www.iconfinder.com/iconsets/142-mini-country-flags-16x16px 
 // import vietnamFlag from '../../assets/flags/vietnam.png'
 
-const examples = [
-  'Nói chung là ngon, với giá 150k full vat và nước thì mình thấy oke. Gà ở đây cực kì ngon, như vị gà Hs của kfc í',
-  'Trái cây ở đây nhiều loại, tươi ngon, ngọt vừa phải. Trà sả tắc vừa uống, thơm ngon. Quán sạch sẽ, phục vụ vui vẻ. Giá cả hợp lý. Chuẩn!',
-  'Mới mở ra đã hư dây kéo',
-  'Gương hơi mờ, Shop k rep tn. Thật sự thất vọng',
-  'Hàng ko đúng chất lượng'
-]
+const examples = {
+  'en': [
+    'This is one of Polanski\'s best films.',
+    'The whole thing plays out with the drowsy heaviness of synchronized swimmer wearing a wool wetsuit.',
+    'No movement, no yuks, not much of anything.',
+    'A cockamamie tone poem pitched precipitously between swoony lyricism and violent catastrophe... the most aggressively nerve-wracking and screamingly neurotic romantic comedy in cinema history.',
+    'A dreary, incoherent, self-indulgent mess of a movie in which a bunch of pompous windbags drone on inanely for two hours...a cacophony of pretentious, meaningless prattle.'
+  ],
+  'vi': [
+    'Nói chung là ngon, với giá 150k full vat và nước thì mình thấy oke. Gà ở đây cực kì ngon, như vị gà Hs của kfc í',
+    'Trái cây ở đây nhiều loại, tươi ngon, ngọt vừa phải. Trà sả tắc vừa uống, thơm ngon. Quán sạch sẽ, phục vụ vui vẻ. Giá cả hợp lý. Chuẩn!',
+    'Mới mở ra đã hư dây kéo',
+    'Gương hơi mờ, Shop k rep tn. Thật sự thất vọng',
+    'Hàng ko đúng chất lượng'
+  ]
+}
 
 class SentimentPage extends React.Component {
   state = {
     input: '',
     sentimentResp: null,
+    language: 'vi',
   }
 
   getSentimentResult = async (items) => {
+    const { language } = this.state;
     try {
       const resp = await axios.post('/demo/sentiment_predict', {
         items,
-        language: 'vi',
+        language,
       })
       // console.log(resp)
       if (resp.data) {
@@ -47,6 +58,10 @@ class SentimentPage extends React.Component {
 
     }
   };
+
+  setLanguage(language) {
+    this.setState({ language })
+  }
 
   render() {
     const { history } = this.props;
@@ -62,7 +77,21 @@ class SentimentPage extends React.Component {
           title="Text Classification"
           subTitle="Sentiment Analysis"
           extra={[
-            <Tag.CheckableTag checked key='vi'>
+            <Tag.CheckableTag 
+              checked={this.state.language === 'en'}
+              onChange={() => this.setLanguage('en')}
+              key='en'
+            >
+              English
+              <span role="img" aria-label="flag" style={{ marginLeft: 5 }}>
+                {getFlagEmoji('GB')}
+              </span>
+            </Tag.CheckableTag>,
+            <Tag.CheckableTag
+              checked={this.state.language === 'vi'}
+              onChange={() => this.setLanguage('vi')}
+              key='vi'
+            >
               Vietnamese
               <span role="img" aria-label="flag" style={{ marginLeft: 5 }}>
                 {getFlagEmoji('VN')}
@@ -83,7 +112,7 @@ class SentimentPage extends React.Component {
   
           <div style={{ marginTop: 20, marginBottom: 20 }}>
             <AutoComplete 
-              dataSource={examples}
+              dataSource={examples[language]}
               onChange={(value) => this.setState({ input: value })}
               style={{ width: '100%' }}
             >
